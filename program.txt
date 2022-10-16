@@ -1,7 +1,0 @@
-Itt úgy csinálok mintha programozni tudnék.
-
-Telik az idő.
-// itt a hiba
-Mindenki akar menni ebédelni.
-
-De majd idővel hátha...
