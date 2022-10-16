@@ -4,8 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        
-
+        // ertekado operatorok
+        int x;
+        x = 34;
+        x <<= 1;
+        x >>= 3;
 
         // bit operatorok
         int iA = 188;
@@ -13,16 +16,16 @@ public class Main {
 
         int iAesB = iA & iB;
         int iAvagyB = iA | iB;
-        int iAxorB = iA^iB;
+        int iAxorB = iA ^ iB;
 
         int iNegA = ~iA;
 
         iA = 60; // (0 0...0 00111100)
         int iAbs2 = iA << 2; //(0 0...0 0011110000)
-        int iAjs3 =  iA >> 3; // (0 0...0 00111)
+        int iAjs3 = iA >> 3; // (0 0...0 00111)
         int iAjjs3 = iA >>> 3;
 
-        int iNjs3 =  (-12) >> 3;
+        int iNjs3 = (-12) >> 3;
         int iNjjs3 = (-12) >>> 3;
 
         // bool muveletek
