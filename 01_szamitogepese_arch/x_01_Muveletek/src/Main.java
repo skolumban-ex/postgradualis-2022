@@ -4,6 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // karakter lancok
+        String s1 = "Zsiroskenyer";
+        String nevem = "kolumban Sandor";
+
+        char cR = s1.charAt(3);
+        String sNagyZsiroskenyer = s1.toUpperCase();
+        int iHasonlitas = s1.compareTo(nevem);
+        int iHasonlitasIgnoreCase = s1.compareToIgnoreCase(nevem);
+
         // ertekado operatorok
         int x;
         x = 34;
