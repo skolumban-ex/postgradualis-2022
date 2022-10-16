@@ -4,6 +4,28 @@ public class Main {
 
     public static void main(String[] args) {
 
+        
+
+
+        // bit operatorok
+        int iA = 188;
+        int iB = 13;
+
+        int iAesB = iA & iB;
+        int iAvagyB = iA | iB;
+        int iAxorB = iA^iB;
+
+        int iNegA = ~iA;
+
+        iA = 60; // (0 0...0 00111100)
+        int iAbs2 = iA << 2; //(0 0...0 0011110000)
+        int iAjs3 =  iA >> 3; // (0 0...0 00111)
+        int iAjjs3 = iA >>> 3;
+
+        int iNjs3 =  (-12) >> 3;
+        int iNjjs3 = (-12) >>> 3;
+
+        // bool muveletek
         boolean bIgaz = true;
         boolean bHamis = false;
 
