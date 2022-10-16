@@ -7,11 +7,16 @@ public class Main {
         // karakter lancok
         String s1 = "Zsiroskenyer";
         String nevem = "kolumban Sandor";
+        String nevem2 = "kolumban Sandor";
+        String nevem3 = "kolumban" + " Sandor";
 
         char cR = s1.charAt(3);
         String sNagyZsiroskenyer = s1.toUpperCase();
         int iHasonlitas = s1.compareTo(nevem);
         int iHasonlitasIgnoreCase = s1.compareToIgnoreCase(nevem);
+
+        boolean bAzonose = s1.equals(nevem);
+        boolean bNevemENevem = nevem == nevem3;
 
         // ertekado operatorok
         int x;
