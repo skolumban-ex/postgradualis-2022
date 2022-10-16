@@ -4,12 +4,24 @@ public class Main {
 
     public static void main(String[] args) {
 
+        boolean bIgaz = true;
+        boolean bHamis = false;
 
+        boolean bIgazEsHamis = bIgaz && bHamis;
+        boolean bIgayVagyHamis = bIgaz || false;
+        boolean bHamisNegalva = !bHamis;
 
-        // szam eredmenyu, szam bemenetu muveletek
         int iOp1 = -3;
         int iOp2 = 10;
+        double dOp1 = -3.2;
+        double dOp2 = 10.4;
+        double dOp3 = -3.1;
 
+        // izaz/hamis = valami szamosdi
+        boolean iOp1KisebbiEOp2 = iOp1 < iOp2;
+        boolean iOp1EgyenloEdOp3 = iOp1 == dOp3;
+
+        // szam eredmenyu, szam bemenetu muveletek
         int iOsszeg = iOp1 + iOp2;
         int iKulonbseg = iOp1 - iOp2;
         int iSzorzat = iOp1 * iOp2;
@@ -18,8 +30,6 @@ public class Main {
         int iPlusz1 = ++iOp1;
         int iMinusz1 = iOp1--;
 
-        double dOp1 = -3;
-        double dOp2 = 10.4;
 
         double dOsszeg = dOp1 + dOp2;
         double dKulonbseg = dOp1 - dOp2;
