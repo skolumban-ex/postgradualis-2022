@@ -12,47 +12,19 @@ public class Main {
         sc.nextLine();
 
         String[] nevek = new String[nevekSzama];
-        int aktualisanBekerendoNevSorszama = 1;
-        switch (nevekSzama){
-            case 5:
-                System.out.println("Addj meg az " + aktualisanBekerendoNevSorszama +". nevet: ");
-                nevek[4] = sc.nextLine();
-                ++aktualisanBekerendoNevSorszama;
-            case 4:
-                System.out.println("Addj meg az " + aktualisanBekerendoNevSorszama +". nevet: ");
-                nevek[3] = sc.nextLine();
-                ++aktualisanBekerendoNevSorszama;
-            case 3:
-                System.out.println("Addj meg az " + aktualisanBekerendoNevSorszama +". nevet: ");
-                nevek[2] = sc.nextLine();
-                ++aktualisanBekerendoNevSorszama;
-            case 2:
-                System.out.println("Addj meg az " + aktualisanBekerendoNevSorszama +". nevet: ");
-                nevek[1] = sc.nextLine();
-                ++aktualisanBekerendoNevSorszama;
-            case 1:
-                System.out.println("Addj meg az " + aktualisanBekerendoNevSorszama +". nevet: ");
-                nevek[0] = sc.nextLine();
+        for (int beolvasandoNevSorszama = 0; beolvasandoNevSorszama < nevekSzama; beolvasandoNevSorszama++) {
+            System.out.println("Addj meg az " + (beolvasandoNevSorszama + 1) + ". nevet: ");
+            nevek[nevekSzama -1 - beolvasandoNevSorszama] = sc.nextLine();
         }
 
         // kiiras
-        int kiirandoNevPozicioja = 0;
-        switch (nevekSzama){
-            case 5:
-                System.out.println(nevek[kiirandoNevPozicioja]);
-                kiirandoNevPozicioja++;
-            case 4:
-                System.out.println(nevek[kiirandoNevPozicioja]);
-                kiirandoNevPozicioja++;
-            case 3:
-                System.out.println(nevek[kiirandoNevPozicioja]);
-                kiirandoNevPozicioja++;
-            case 2:
-                System.out.println(nevek[kiirandoNevPozicioja]);
-                kiirandoNevPozicioja++;
-            case 1:
-                System.out.println(nevek[kiirandoNevPozicioja]);
-                kiirandoNevPozicioja++;
+        for (int i = 0; i < nevek.length;i++) {
+            String iDikNev = nevek[i];
+            System.out.println(iDikNev);
+        }
+
+        for (String iDikNev:nevek){
+            System.out.println(iDikNev);
         }
     }
 }
