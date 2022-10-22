@@ -7,7 +7,21 @@ public class Main {
         int[] parosok = {2, 4, 6, 8};
 
         String[] nevek = new String[3];
+        nevek[0] = "Kozalkalmazott";
         nevek[1] = "Kozepso";
+        nevek[2] = "Bela";
+
+        int hasonlitasiEredmeny = nevek[0].compareTo(nevek[1]);
+
+        //if (nevek[0] <= nevek[1] && nevek[1].compareTo(nevek[2]) <= 0){
+        if (nevek[0].compareTo(nevek[1]) <= 0 && nevek[1].compareTo(nevek[2]) <= 0){
+            // a sorrend 0 1 2
+
+        }
+        if (nevek[0].compareTo(nevek[2]) <= 0 && nevek[2].compareTo(nevek[1]) <= 0){
+            // a sorrend 0 2 1
+
+        }
 
         String[] nevekDirektFeltoltve = {"A", "B", "C", "D"};
 
