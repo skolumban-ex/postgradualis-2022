@@ -14,16 +14,16 @@ public class Main {
         String[] nevek = new String[nevekSzama];
         for (int beolvasandoNevSorszama = 0; beolvasandoNevSorszama < nevekSzama; beolvasandoNevSorszama++) {
             System.out.println("Addj meg az " + (beolvasandoNevSorszama + 1) + ". nevet: ");
-            nevek[nevekSzama -1 - beolvasandoNevSorszama] = sc.nextLine();
+            nevek[nevekSzama - 1 - beolvasandoNevSorszama] = sc.nextLine();
         }
 
         // kiiras
-        for (int i = 0; i < nevek.length;i++) {
+        for (int i = 0; i < nevek.length; i++) {
             String iDikNev = nevek[i];
             System.out.println(iDikNev);
         }
 
-        for (String iDikNev:nevek){
+        for (String iDikNev : nevek) {
             System.out.println(iDikNev);
         }
     }
