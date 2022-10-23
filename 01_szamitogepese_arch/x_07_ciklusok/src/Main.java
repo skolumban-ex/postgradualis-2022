@@ -29,18 +29,32 @@ public class Main {
 //            s = sc.nextLine();
 //        }
 
-        String s;
-        do {
-            // ismetelendo utasitasok
-            System.out.println("Adjon meg egy karakterlancot: ");
-            s = sc.nextLine();
-        } while (s.compareTo("Exit") != 0);
+//        String s;
+//        do {
+//            // ismetelendo utasitasok
+//            System.out.println("Adjon meg egy karakterlancot: ");
+//            s = sc.nextLine();
+//        } while (s.compareTo("Exit") != 0);
+//
+//        boolean elsoEllenorzes = true;
+//        for (; elsoEllenorzes || s.compareTo("Exit") != 0; ) {
+//            elsoEllenorzes = false;
+//            System.out.println("Adjon meg egy karakterlancot: ");
+//            s = sc.nextLine();
+//        }
 
-        boolean elsoEllenorzes = true;
-        for (; elsoEllenorzes || s.compareTo("Exit") != 0;){
-            elsoEllenorzes = false;
-            System.out.println("Adjon meg egy karakterlancot: ");
-            s = sc.nextLine();
+        // van egy tomb
+        // irjuk ki a tomb elemeit az eslo kettesig
+        int[] szamok = {1, 6, 4, 2, 5, -3};
+        boolean megvoltMarAzElsoKettes = false;
+        for (int i = 0; i < szamok.length; i++) {
+            if (szamok[i] == 2) {
+                megvoltMarAzElsoKettes = true;
+            }
+
+            if (!megvoltMarAzElsoKettes) {
+                System.out.println(szamok[i]);
+            }
         }
 
         System.out.println("Vege.");
