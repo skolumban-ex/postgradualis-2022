@@ -45,16 +45,12 @@ public class Main {
 
         // van egy tomb
         // irjuk ki a tomb elemeit az eslo kettesig
-        int[] szamok = {1, 6, 4, 2, 5, -3};
-        boolean megvoltMarAzElsoKettes = false;
+        int[] szamok = {1, 6, 2, 5, -3};
         for (int i = 0; i < szamok.length; i++) {
             if (szamok[i] == 2) {
-                megvoltMarAzElsoKettes = true;
+                break;
             }
-
-            if (!megvoltMarAzElsoKettes) {
-                System.out.println(szamok[i]);
-            }
+            System.out.println(szamok[i]);
         }
 
         System.out.println("Vege.");
