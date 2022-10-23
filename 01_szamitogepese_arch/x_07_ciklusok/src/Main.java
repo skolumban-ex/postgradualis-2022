@@ -53,7 +53,31 @@ public class Main {
             System.out.println(szamok[i]);
         }
 
-        System.out.println("Vege.");
+        // irjunk ki paros szamokat 10-ig
+        for (int i = 0; i <= 10; i++) {
+            if (i % 2 == 0) {
+                if (i % 2 == 0) {
+                    if (i % 2 == 0) {
+                        if (i % 2 == 0) {
+                            System.out.println(i);
+                        }
+                    }
+                }
+            }
+        }
 
+        // irjunk ki paros szamokat 10-ig
+        for (int i = 0;
+             i <= 10;
+             i++) {
+            if (i % 2 != 0) {
+                continue;
+            }
+
+            // ha eljutok idáig, akkkor paros szamom van
+            System.out.println(i);
+        }
+
+        System.out.println("Vege.");
     }
 }
