@@ -1,7 +1,3 @@
-import org.w3c.dom.xpath.XPathResult;
-
-import java.util.Scanner;
-
 public class Main {
 
     // Rendes palindrom teszt: Írjon programot amely beolvas egy karakterláncot
@@ -15,26 +11,34 @@ public class Main {
 
         String szoveg = "a cápa ette apáca.";
 
-        String nemErdekesKarakterek = " .";
+        boolean palindrom = PalindromE(szoveg);
+
+        if (palindrom)
+            System.out.println("Palindorm a: " + szoveg);
+        else
+            System.out.println("Nem palindorm a: " + szoveg);
+    }
+
+    public static boolean PalindromE(String ellenorzendoSzoveg) {
 
         int karPozElsoFeleben = 0;
-        int karPozHatsoFeleben = szoveg.length() - 1;
+        int karPozHatsoFeleben = ellenorzendoSzoveg.length() - 1;
 
         boolean palindrom = true;
         while (karPozElsoFeleben < karPozHatsoFeleben) {
             // ha az elso pozicio nem erdekes karakter
-            if (nemErdekesKarakterek.indexOf(szoveg.charAt(karPozElsoFeleben)) >= 0) {
+            if (palindromsagSzempontjabolErdektelenKarakter(ellenorzendoSzoveg.charAt(karPozElsoFeleben))) {
                 karPozElsoFeleben++;
                 continue;
             }
             // ha a hatso pozicio nem erdekes karakter
-            if (nemErdekesKarakterek.indexOf(szoveg.charAt(karPozHatsoFeleben)) >= 0) {
+            if (palindromsagSzempontjabolErdektelenKarakter(ellenorzendoSzoveg.charAt(karPozHatsoFeleben))) {
                 karPozHatsoFeleben--;
                 continue;
             }
 
             // ha ket karakteren van a ket pozicio, akkor karaktereket kell hasonlitani
-            if (szoveg.charAt(karPozElsoFeleben) != szoveg.charAt(karPozHatsoFeleben)) {
+            if (ellenorzendoSzoveg.charAt(karPozElsoFeleben) != ellenorzendoSzoveg.charAt(karPozHatsoFeleben)) {
                 // nem palindrom
                 palindrom = false;
                 break;
@@ -45,9 +49,11 @@ public class Main {
             }
         }
 
-        if (palindrom)
-            System.out.println("Palindorm a: " + szoveg);
-        else
-            System.out.println("Nem palindorm a: " + szoveg);
+        return palindrom;
+    }
+
+    private static boolean palindromsagSzempontjabolErdektelenKarakter(char c) {
+        String nemErdekesKarakterek = " .";
+        return nemErdekesKarakterek.indexOf(c) >= 0;
     }
 }
