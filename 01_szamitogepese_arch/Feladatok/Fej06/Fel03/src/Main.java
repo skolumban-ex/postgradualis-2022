@@ -7,16 +7,18 @@ public class Main {
         System.out.println("Add meg a tesztelendo szoveget: ");
         String szoveg = sc.nextLine();
 
-        String megforditottSzoveg = "";
-        for (int kovetkezoBetuPozicioja = szoveg.length() - 1;
-             kovetkezoBetuPozicioja >= 0;
-             kovetkezoBetuPozicioja--) {
-            megforditottSzoveg = megforditottSzoveg + szoveg.charAt(kovetkezoBetuPozicioja);
-        }
+//        String megforditottSzoveg = "";
+//        for (int kovetkezoBetuPozicioja = szoveg.length() - 1;
+//             kovetkezoBetuPozicioja >= 0;
+//             kovetkezoBetuPozicioja--) {
+//            megforditottSzoveg = megforditottSzoveg + szoveg.charAt(kovetkezoBetuPozicioja);
+//        }
 
         boolean bASzovegPalindrom = true;
-        for (int i = 0; i < szoveg.length(); i++) {
-            if (szoveg.charAt(i) != megforditottSzoveg.charAt(i))
+        for (int i = 0;
+             i < szoveg.length() / 2 && bASzovegPalindrom;
+             i++) {
+            if (szoveg.charAt(i) != szoveg.charAt(szoveg.length() - 1 - i))
                 bASzovegPalindrom = false;
         }
 
