@@ -24,6 +24,6 @@ public class Main {
     }
 
     private static boolean feltetelAtalakitva(boolean a, boolean b) {
-        return true;
+        return a || !b;
     }
 }
