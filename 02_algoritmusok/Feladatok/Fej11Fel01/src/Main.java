@@ -5,13 +5,15 @@ import java.nio.file.Paths;
 public class Main {
     // Írja ki a program aktuális könyvtárában lévő összes könyvtár és fájl nevét.
     // Egyszer a könyvtrárakat, utána a fájlokat.
-    
+
+    // Írja ki a program prancssori argumentumaként megkapott könyvtárban lévő összes
+    // könyvtár és fájl nevét. Egyszer a könyvtrárakat, utána a fájlokat.
     public static void main(String[] args) {
-        Path aktKonyvtarEleres = Paths.get("").toAbsolutePath();
+        Path listazandoKonyvtarUtja = Paths.get(args[0]);
 
-        konyvtarAlkonyvtarainakListazasa(aktKonyvtarEleres);
+        konyvtarAlkonyvtarainakListazasa(listazandoKonyvtarUtja);
 
-        konyvtarFaljainakListazasa(aktKonyvtarEleres);
+        konyvtarFaljainakListazasa(listazandoKonyvtarUtja);
     }
 
     private static void konyvtarAlkonyvtarainakListazasa(Path aktKonyvtarEleres) {
