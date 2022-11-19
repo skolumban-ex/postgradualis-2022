@@ -5,6 +5,15 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
 
+        Path currentFolderPath = Paths.get("").toAbsolutePath();
+        File currentFolderInfo = currentFolderPath.toFile();
+
+        //fsega2`021
+
+        File[] filerendszerBejegyzesek = currentFolderInfo.listFiles();
+
+
+
         String spath = "d:\\"+"Dropbox\\Adatok"+"CI-KolumbanSandor-2020.pdf";
         Path oneletrajzUtvonal = Paths.get("d:\\",
                 "Dropbox\\Adatok", "CI-KolumbanSandor-2020.pdf");
