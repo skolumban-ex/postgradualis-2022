@@ -5,27 +5,26 @@ enum ForgovillaAllapot {
 
 enum ForgovillaEsemeny {
     AthaladasiKiserlet,
-    PenzBedobas,
-    Belerugas,
-    EsoEsik
+    PenzBedobas ,
+    Belerugas
 }
 
 public class Main {
     public static void main(String[] args) {
 
-        ForgovillaAllapot forgovillaNyiva = ForgovillaAllapot.Nyitva;
+        ForgovillaAllapot eszakiKapuAllapota = ForgovillaAllapot.Nyitva;
 
         // valami tortenik
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+        eszakiKapuAllapota = ForgovillaKovetkezoAllapota(eszakiKapuAllapota,
                 ForgovillaEsemeny.Belerugas);
 
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+        eszakiKapuAllapota = ForgovillaKovetkezoAllapota(eszakiKapuAllapota,
                 ForgovillaEsemeny.AthaladasiKiserlet);
 
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+        eszakiKapuAllapota = ForgovillaKovetkezoAllapota(eszakiKapuAllapota,
                 ForgovillaEsemeny.AthaladasiKiserlet);
 
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+        eszakiKapuAllapota = ForgovillaKovetkezoAllapota(eszakiKapuAllapota,
                 ForgovillaEsemeny.PenzBedobas);
 
     }
