@@ -1,55 +1,64 @@
+enum ForgovillaAllapot {
+    Nyitva,
+    Zarva
+}
+
+enum ForgovillaEsemeny {
+    AthaladasiKiserlet,
+    PenzBedobas,
+    Belerugas,
+    EsoEsik
+}
+
 public class Main {
     public static void main(String[] args) {
 
-        // true - nyitva
-        // false - zarva
-        boolean forgovillaNyiva = true;
+        ForgovillaAllapot forgovillaNyiva = ForgovillaAllapot.Nyitva;
 
         // valami tortenik
-        // - belerug
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva, 3);
+        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+                ForgovillaEsemeny.Belerugas);
 
-        // - athaladni probal
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva, 1);
+        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+                ForgovillaEsemeny.AthaladasiKiserlet);
 
-        // - athaladni probal
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva, 1);
+        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+                ForgovillaEsemeny.AthaladasiKiserlet);
 
-        // - penzt dob be
-        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva, 2);
+        forgovillaNyiva = ForgovillaKovetkezoAllapota(forgovillaNyiva,
+                ForgovillaEsemeny.PenzBedobas);
 
     }
 
-    // aktualisEsemeny
-    // 1: athaladas
-    // 2: penzbedobas
-    // 3: belerugas
-    private static boolean ForgovillaKovetkezoAllapota(
-            boolean forgovillaAktualisanNyitva,
-            int aktualisEsemeny
+    private static ForgovillaAllapot ForgovillaKovetkezoAllapota(
+            ForgovillaAllapot aktualisAllapot,
+            ForgovillaEsemeny aktualisEsemeny
     ) {
-        if (forgovillaAktualisanNyitva) {
-            switch (aktualisEsemeny) {
-                case 1:
-                    return false;
-                case 2:
-                    return true;
-                case 3:
-                    return true;
-                default:
-                    throw new IllegalArgumentException();
-            }
-        } else {
-            switch (aktualisEsemeny) {
-                case 1:
-                    return false;
-                case 2:
-                    return true;
-                case 3:
-                    return false;
-                default:
-                   throw new IllegalArgumentException();
-            }
+        switch (aktualisAllapot) {
+            case Nyitva:
+                switch (aktualisEsemeny) {
+                    case AthaladasiKiserlet:
+                        return ForgovillaAllapot.Zarva;
+                    case PenzBedobas:
+                        return ForgovillaAllapot.Nyitva;
+                    case Belerugas:
+                        return ForgovillaAllapot.Nyitva;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+            case Zarva:
+                switch (aktualisEsemeny) {
+                    case AthaladasiKiserlet:
+                        return ForgovillaAllapot.Zarva;
+                    case PenzBedobas:
+                        return ForgovillaAllapot.Nyitva;
+                    case Belerugas:
+                        return ForgovillaAllapot.Zarva;
+                    default:
+                        throw new IllegalArgumentException();
+                }
+            default:
+                throw new IllegalArgumentException();
         }
     }
 }
