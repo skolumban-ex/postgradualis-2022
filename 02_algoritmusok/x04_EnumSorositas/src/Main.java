@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 
 enum Allapotok {
     Allapot1,
+    UjAllpot,
     Allapot2
 }
 
@@ -21,7 +22,7 @@ public class Main {
         FileOutputStream fos = new FileOutputStream(adatFile);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-        oos.write(a.ordinal());
+        oos.writeUTF(a.name());
 
         oos.close();
         fos.close();
@@ -33,11 +34,11 @@ public class Main {
         FileInputStream fis = new FileInputStream(adatFile);
         ObjectInputStream ois = new ObjectInputStream(fis);
 
-        int enumAsOrdinal = ois.read();
+        String enumName = ois.readUTF();
 
         ois.close();
         fis.close();
 
-        return  Allapotok.values()[enumAsOrdinal];
+        return  Allapotok.valueOf(enumName);
     }
 }
