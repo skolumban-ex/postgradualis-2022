@@ -8,6 +8,24 @@ public class Main {
 
     }
 
+    private static void SelectionSort(int[] v) {
+        for (int aktualisanKivalasztandoHely = 0; aktualisanKivalasztandoHely < v.length - 1; aktualisanKivalasztandoHely++) {
+
+            int aktualisUtaniLegkisebbElemPozicioja = aktualisanKivalasztandoHely;
+            for (int i = aktualisanKivalasztandoHely + 1; i < v.length; i++) {
+                if (v[i] < v[aktualisUtaniLegkisebbElemPozicioja]) {
+                    aktualisUtaniLegkisebbElemPozicioja = i;
+                }
+            }
+
+            if (aktualisUtaniLegkisebbElemPozicioja != aktualisanKivalasztandoHely) {
+                int tmp = v[aktualisUtaniLegkisebbElemPozicioja];
+                v[aktualisUtaniLegkisebbElemPozicioja] = v[aktualisanKivalasztandoHely];
+                v[aktualisanKivalasztandoHely] = tmp;
+            }
+        }
+    }
+
     private static void BubbleSortSimple(int[] v) {
         for (int j = 0; j < v.length - 1; j++) {
             for (int i = 0; i < v.length - 1 - j; i++) {
