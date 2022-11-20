@@ -1,11 +1,26 @@
 public class Main {
     public static void main(String[] args) {
-        int[] v1 = {5, 1, 4, 2, 8};
+        int[] v1 = {1, 5, 2, 3, -100, 7};
         int[] v2 = {1, 2, 3, 4, 5};
 
-        BubbleSort(v2);
+        InsertionSort(v1);
         BubbleSort(v1);
 
+    }
+
+    private static void InsertionSort(int[] v) {
+        for (int elsoNemRendezettElemHelye = 1; elsoNemRendezettElemHelye < v.length; elsoNemRendezettElemHelye++) {
+
+            int csusztatandoElemHelye = elsoNemRendezettElemHelye;
+
+            while (csusztatandoElemHelye > 0 && v[csusztatandoElemHelye - 1] > v[csusztatandoElemHelye]) {
+                int tmp = v[csusztatandoElemHelye];
+                v[csusztatandoElemHelye] = v[csusztatandoElemHelye - 1];
+                v[csusztatandoElemHelye - 1] = tmp;
+                csusztatandoElemHelye--;
+            }
+
+        }
     }
 
     private static void SelectionSort(int[] v) {
