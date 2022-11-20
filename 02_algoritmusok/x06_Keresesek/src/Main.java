@@ -13,12 +13,15 @@ public class Main {
 
             int csusztatandoElemHelye = elsoNemRendezettElemHelye;
 
-            while (csusztatandoElemHelye > 0 && v[csusztatandoElemHelye - 1] > v[csusztatandoElemHelye]) {
-                int tmp = v[csusztatandoElemHelye];
+            int csusztatandoElem = v[csusztatandoElemHelye];
+
+            while (csusztatandoElemHelye > 0
+                    && v[csusztatandoElemHelye - 1] > csusztatandoElem) {
                 v[csusztatandoElemHelye] = v[csusztatandoElemHelye - 1];
-                v[csusztatandoElemHelye - 1] = tmp;
                 csusztatandoElemHelye--;
             }
+
+            v[csusztatandoElemHelye] = csusztatandoElem;
 
         }
     }
