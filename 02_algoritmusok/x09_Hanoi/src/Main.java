@@ -9,11 +9,15 @@ public class Main {
 
         AllapotKirajzolas();
 
+        // pakoljunk mindent at az A rol a C re
+
     }
 
-    private static void AllapotKirajzolas(){
-        for (int i = A.length-1; i >= 0 ; i--) {
+    private static void AllapotKirajzolas() {
+        for (int i = A.length - 1; i >= 0; i--) {
             // az oszlop i. szintje kiirodik
+            String szintSzoveg = SzintszovegEloallitas(i);
+            System.out.println(szintSzoveg);
         }
 
         // foldszint
@@ -21,6 +25,27 @@ public class Main {
 
         // oszlopok neve
         System.out.println(" A  B  C ");
+    }
+
+    private static String SzintszovegEloallitas(int i) {
+        String szintSzoveg = "";
+
+        szintSzoveg += SzintszovegKiegesziteseOszloppal(i, A);
+        szintSzoveg += SzintszovegKiegesziteseOszloppal(i, B);
+        szintSzoveg += SzintszovegKiegesziteseOszloppal(i, C);
+
+        return szintSzoveg;
+    }
+
+    private static String SzintszovegKiegesziteseOszloppal(int szint, int[] oszlop) {
+        String szintSzoveg =" ";
+        if (oszlop[szint] != 0) {
+            szintSzoveg += oszlop[szint];
+        } else {
+            szintSzoveg += " ";
+        }
+        szintSzoveg +=" ";
+        return szintSzoveg;
     }
 
     private static void KezdetiErtekBeallitas(int n) {
