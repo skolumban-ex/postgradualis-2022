@@ -7,6 +7,7 @@ public class Main {
 
         KezdetiErtekBeallitas(5);
 
+        AllapotKirajzolas();
 
     }
 
@@ -19,6 +20,7 @@ public class Main {
         System.out.println("_________");
 
         // oszlopok neve
+        System.out.println(" A  B  C ");
     }
 
     private static void KezdetiErtekBeallitas(int n) {
