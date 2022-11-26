@@ -1,16 +1,77 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         int[] v = {1, 5, 88, 8, 23, -43, 7};
 
-        int poz = Keres(v, 11);
+        int poz = KeresElsoElemLevagassal(v, 23);
+
+        Arrays.sort(v);
+
+        poz = KeresRendezettTombben(v, 23);
+
     }
 
-    private static int Keres(int[] v, int x) {
+    private static int KeresRendezettTombben(int[] v, int x) {
         // 1 * comp (Keres, n)
-        return Keres(v, x, 0);
+        return KeresRendezettTombben(v, x, 0, v.length);
     }
 
-    private static int Keres(int[] v, int x, int rangeStartInclusive) {
+    private static int KeresRendezettTombben(int[] v, int x,
+                                             int rangeStartInclusive, int rangeEndExclusive) {
+        // legkisebb feladat, 1 elemu tartomany
+        if (rangeStartInclusive == rangeEndExclusive - 1) {
+            if (v[rangeStartInclusive] == x)
+                return rangeStartInclusive;
+            else
+                return -1;
+        }
+
+        // felezo pozicio
+        int felezo = rangeStartInclusive + (rangeEndExclusive - rangeStartInclusive) / 2;
+        if (v[felezo] == x) {
+            return felezo;
+        } else if (v[felezo] < x) {
+            // keress csak fent
+            return KeresRendezettTombben(v, x, felezo + 1, rangeEndExclusive);
+        } else {
+            // keress csak leng
+            return KeresRendezettTombben(v, x, rangeStartInclusive, felezo);
+        }
+    }
+
+    private static int KeresElsoElemLevagassal(int[] v, int x) {
+        // 1 * comp (Keres, n)
+        return KeresKettevagassal(v, x, 0, v.length);
+    }
+
+    private static int KeresKettevagassal(int[] v, int x,
+                                          int rangeStartInclusive, int rangeEndExclusive) {
+        // legkisebb feladat, 1 elemu tartomany
+        if (rangeStartInclusive == rangeEndExclusive - 1) {
+            if (v[rangeStartInclusive] == x)
+                return rangeStartInclusive;
+            else
+                return -1;
+        }
+
+        // felezo pozicio
+        int felezo = rangeStartInclusive + (rangeEndExclusive - rangeStartInclusive) / 2;
+
+        int pozicioAzAlsoFelben = KeresKettevagassal(v, x, rangeStartInclusive, felezo);
+        if (pozicioAzAlsoFelben >= 0)
+            return pozicioAzAlsoFelben;
+        else {
+            int pozicioAFelsoFeleben = KeresKettevagassal(v, x, felezo, rangeEndExclusive);
+            if (pozicioAFelsoFeleben >= 0)
+                return pozicioAFelsoFeleben;
+            else
+                return -1;
+        }
+    }
+
+    private static int KeresElsoElemLevagassal(int[] v, int x, int rangeStartInclusive) {
         // ha mar kis feladat a kerdes, azt oldjuk meg
         // 1
         if (rangeStartInclusive == v.length - 1)
@@ -24,7 +85,7 @@ public class Main {
             // visszavezetes kisebb feladatok
             // kisebb feladatok megoldasa
             // 1 + comp (Keres, n-1)
-            int pos = Keres(v, x, rangeStartInclusive + 1);
+            int pos = KeresElsoElemLevagassal(v, x, rangeStartInclusive + 1);
             return pos;
         }
     }
