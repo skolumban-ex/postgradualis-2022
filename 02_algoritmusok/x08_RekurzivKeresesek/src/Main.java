@@ -30,11 +30,9 @@ public class Main {
 
         // felezo pozicio
         int felezo = rangeStartInclusive + (rangeEndExclusive - rangeStartInclusive) / 2;
-        if (v[felezo] == x) {
-            return felezo;
-        } else if (v[felezo] < x) {
+        if (v[felezo] <= x) {
             // keress csak fent
-            return KeresRendezettTombben(v, x, felezo + 1, rangeEndExclusive);
+            return KeresRendezettTombben(v, x, felezo, rangeEndExclusive);
         } else {
             // keress csak leng
             return KeresRendezettTombben(v, x, rangeStartInclusive, felezo);
