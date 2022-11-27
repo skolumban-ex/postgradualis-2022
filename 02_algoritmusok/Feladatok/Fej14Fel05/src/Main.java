@@ -7,7 +7,7 @@ public class Main {
     //Számolja ki 𝐹𝑛 értékét rekurzió segítségéve
     public static void main(String[] args) {
 
-        for (int n=1; n<100;++n) {
+        for (int n = 1; n < 200; ++n) {
             FibonacciKiertekelesekSzama = new long[n + 1];
 
             long startTime = System.currentTimeMillis();
@@ -22,6 +22,26 @@ public class Main {
         }
     }
 
+    private static long Fibonacci(int n) {
+        return Fibonacci(
+                1, // F2,
+                1, //F1,
+                n - 2
+        );
+    }
+
+    private static long Fibonacci(long utolsoIsmertF,
+                                  long utolsoElottiIsmertF,
+                                  int utolsoUtanHannyalAlljunkMeg) {
+
+        if (utolsoUtanHannyalAlljunkMeg <= 0)
+            return utolsoIsmertF;
+
+        return Fibonacci(utolsoIsmertF + utolsoElottiIsmertF,
+                utolsoIsmertF,
+                utolsoUtanHannyalAlljunkMeg - 1);
+    }
+
     private static void KiertekelesSzamokKiirasa() {
         System.out.println("Kiertekelesek szama:");
         for (int i = 1; i < FibonacciKiertekelesekSzama.length; i++) {
@@ -29,15 +49,15 @@ public class Main {
         }
     }
 
-    private static long Fibonacci(int n) {
+    private static long Fibonacci_Naiv(int n) {
         // szamoljuk, hogy hanyszor ertekeltuk ki Fn-t
         FibonacciKiertekelesekSzama[n]++;
 
         if (n <= 2)
             return 1;
 
-        long Fn_1 = Fibonacci(n - 1);
-        long Fn_2 = Fibonacci(n - 2);
+        long Fn_1 = Fibonacci_Naiv(n - 1);
+        long Fn_2 = Fibonacci_Naiv(n - 2);
 
         long Fn = Fn_1 + Fn_2;
         return Fn;
