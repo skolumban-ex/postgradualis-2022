@@ -3,21 +3,33 @@ public class Main {
 
         int[] v = {38, 27, 43, 3, 9, 82, 10};
 
-        int[] v1 = {3, 27, 38, 43};
-        int[] v2 = {9, 10, 82};
-        int[] osszef = RendezettTomboketOsszefesul(v1, v2);
-
         MergeSort(v);
     }
 
     private static void MergeSort(int[] v) {
+        if (v.length <= 1)
+            return;
 
         // vagd kette a tombot
+        int felezo = v.length / 2;
+        int[] alsoFel = new int[felezo];
+        int[] felsoFel = new int[v.length - felezo];
+        for (int i = 0; i < alsoFel.length; i++) {
+            alsoFel[i] = v[i];
+        }
+        for (int i = 0; i < felsoFel.length; i++) {
+            felsoFel[i] = v[felezo + i];
+        }
 
         // rendezd a ket altombot
+        MergeSort(alsoFel);
+        MergeSort(felsoFel);
 
         // fesuld ossze az eredmenyeket
-
+        int[] rendezett = RendezettTomboketOsszefesul(alsoFel, felsoFel);
+        for (int i = 0; i < v.length; i++) {
+            v[i] = rendezett[i];
+        }
     }
 
     private static int[] RendezettTomboketOsszefesul(int[] v1, int[] v2) {
