@@ -1,6 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
+    }
+
+    private static void NaivMegoldas() {
         long megoldasiTippekSzama = 0;
         int joMegoldasokSzama = 0;
         int n = 10;
