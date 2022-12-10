@@ -1,6 +1,83 @@
 public class Main {
+
+    private static int[] aktualisKiralynoElhelyes;
+
     public static void main(String[] args) {
 
+        int helyesMegoldasokSzama = 0;
+        KezdetiReszmegoldadBeallitasa(12);
+
+        // backtracking iterativan
+        int aktualisSzint = 0;
+        while (aktualisSzint >= 0) {
+            boolean azonosSzintenVoltUjKezdemeny = false;
+            boolean ujKezdemenyEldobando = false;
+            do {
+                azonosSzintenVoltUjKezdemeny = SzintenBelulUjReszmegoldas(aktualisSzint);
+                if (azonosSzintenVoltUjKezdemeny)
+                    ujKezdemenyEldobando = EldobandoReszmegoldas(aktualisSzint);
+            } while (azonosSzintenVoltUjKezdemeny && ujKezdemenyEldobando);
+
+            if (!ujKezdemenyEldobando && azonosSzintenVoltUjKezdemeny) {
+                if (TeljesMegoldas(aktualisSzint)) {
+                    // dolgozzuk
+                    ++helyesMegoldasokSzama;
+                    MegoldasKiirasa(helyesMegoldasokSzama, aktualisKiralynoElhelyes);
+                } else {
+                    // szintlepes
+                    ++aktualisSzint;
+                    // reszmegoldas specifikalasa
+                }
+            } else {
+                // backtrack
+                // szint lepes lefele
+                --aktualisSzint;
+                aktualisKiralynoElhelyes[aktualisSzint + 1] = -1;
+            }
+        }
+    }
+
+    private static void KezdetiReszmegoldadBeallitasa(int n) {
+        aktualisKiralynoElhelyes = new int[n];
+        for (int i = 0; i < n; i++) {
+            aktualisKiralynoElhelyes[i] = -1;
+        }
+    }
+
+    private static boolean TeljesMegoldas(int aktualisSzint) {
+        return aktualisSzint == aktualisKiralynoElhelyes.length - 1;
+    }
+
+    private static boolean EldobandoReszmegoldas(int aktualisSzint) {
+        // azonos sorban levo utkozest nem kell ellenorizni
+
+        // azonos oszlop ellenorzes
+        // a tombben nem lehet ket azonos elem
+        // -- rendezzuk, ket egymasmelletti elem ha azonos - O(n log n) + O (n)
+        // dupla iteracio
+        if (TartalmazAzonosElemet(aktualisKiralynoElhelyes, aktualisSzint))
+            return true;
+
+        // atlon utkozes ellenorzese
+        boolean vanAtlosUtkozes = false;
+        for (int i = 0; i <= aktualisSzint && !vanAtlosUtkozes; i++) {
+            for (int j = i + 1; j <= aktualisSzint && !vanAtlosUtkozes; j++) {
+                if (Math.abs(aktualisKiralynoElhelyes[i] - aktualisKiralynoElhelyes[j]) == Math.abs(i - j)) {
+                    vanAtlosUtkozes = true;
+                }
+            }
+        }
+        return vanAtlosUtkozes;
+    }
+
+    private static boolean SzintenBelulUjReszmegoldas(int aktualisSzint) {
+        if (!(aktualisKiralynoElhelyes[aktualisSzint] < aktualisKiralynoElhelyes.length - 1))
+            return false;
+
+        // ha van tovabbi reszmegoldas a szinten, azt be kell allitani
+        aktualisKiralynoElhelyes[aktualisSzint]++;
+
+        return true;
     }
 
     private static void NaivMegoldas() {
@@ -22,7 +99,7 @@ public class Main {
 
         } while (KovetkezoMegoldasraAllit(megoldasTipp));
 
-        System.out.println("Osszes lehetseges megoldasok szama: "+megoldasiTippekSzama);
+        System.out.println("Osszes lehetseges megoldasok szama: " + megoldasiTippekSzama);
         System.out.println("Jo megoldasok szama:" + joMegoldasokSzama);
     }
 
@@ -33,7 +110,7 @@ public class Main {
         // a tombben nem lehet ket azonos elem
         // -- rendezzuk, ket egymasmelletti elem ha azonos - O(n log n) + O (n)
         // dupla iteracio
-        if (TartalmazAzonosElemet(megoldasTipp))
+        if (TartalmazAzonosElemet(megoldasTipp, megoldasTipp.length))
             return false;
 
         // atlon utkozes ellenorzese
@@ -48,10 +125,10 @@ public class Main {
         return !vanAtlosUtkozes;
     }
 
-    private static boolean TartalmazAzonosElemet(int[] megoldasTipp) {
+    private static boolean TartalmazAzonosElemet(int[] megoldasTipp, int ellenorzesiTartomanyVege) {
         boolean vanAzonosElem = false;
-        for (int i = 0; i < megoldasTipp.length; i++) {
-            for (int j = i + 1; j < megoldasTipp.length; j++) {
+        for (int i = 0; i <= ellenorzesiTartomanyVege; i++) {
+            for (int j = i + 1; j <= ellenorzesiTartomanyVege; j++) {
                 if (megoldasTipp[i] == megoldasTipp[j]) {
                     vanAzonosElem = true;
                     break;
