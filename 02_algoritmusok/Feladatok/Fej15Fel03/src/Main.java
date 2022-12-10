@@ -5,10 +5,12 @@ public class Main {
     //Pl.: 4=1+1+1+1=1+1+2=1+3=2+2
     private static int[] aktualisReszmegoldas;
 
+    private static int EldobandoErekelesekSzama = 0;
+
     public static void main(String[] args) {
 
         int helyesMegoldasokSzama = 0;
-        KezdetiReszmegoldadBeallitasa(4);
+        KezdetiReszmegoldadBeallitasa(20);
 
         // backtracking iterativan
         int aktualisSzint = 0;
@@ -38,6 +40,8 @@ public class Main {
                 aktualisReszmegoldas[aktualisSzint + 1] = 0;
             }
         }
+
+        System.out.println("Osszes eldobando ertekelesek szama: " + EldobandoErekelesekSzama);
     }
 
     private static void KezdetiReszmegoldadBeallitasa(int n) {
@@ -54,12 +58,22 @@ public class Main {
     }
 
     private static boolean EldobandoReszmegoldas(int aktualisSzint) {
+        ++EldobandoErekelesekSzama;
+
         int osszeg = 0;
         for (int rmi : aktualisReszmegoldas) {
             osszeg += rmi;
         }
 
-        return osszeg > aktualisReszmegoldas.length;
+        if (osszeg > aktualisReszmegoldas.length)
+            return true;
+
+        for (int i = 0; i < aktualisSzint; i++) {
+            if (aktualisReszmegoldas[i] > aktualisReszmegoldas[i + 1])
+                return true;
+        }
+
+        return false;
     }
 
     private static boolean SzintenBelulUjReszmegoldas(int aktualisSzint) {
@@ -77,9 +91,9 @@ public class Main {
 
     private static void MegoldasKiirasa(long megoldasiTippekSzama, int[] megoldasTipp) {
         System.out.print("#" + megoldasiTippekSzama + ": ");
-        for (int i = 0; i < aktualisReszmegoldas.length-1; ++i){
-            System.out.print(aktualisReszmegoldas[i]+ " + ");
+        for (int i = 0; i < aktualisReszmegoldas.length - 1; ++i) {
+            System.out.print(aktualisReszmegoldas[i] + " + ");
         }
-        System.out.println( aktualisReszmegoldas[aktualisReszmegoldas.length-1]);
+        System.out.println(aktualisReszmegoldas[aktualisReszmegoldas.length - 1]);
     }
 }
