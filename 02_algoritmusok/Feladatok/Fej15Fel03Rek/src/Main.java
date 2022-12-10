@@ -60,7 +60,12 @@ public class Main {
         for (int i = 0; i < kovetkezoSzintHely; i++) {
             kiterjesztett[i] = reszlegesMegoldas[i];
         }
-        kiterjesztett[kovetkezoSzintHely] = 1;
+
+        if (kovetkezoSzintHely != 0)
+            kiterjesztett[kovetkezoSzintHely] = kiterjesztett[kovetkezoSzintHely - 1];
+        else
+            kiterjesztett[kovetkezoSzintHely] = 1;
+
         return kiterjesztett;
     }
 
@@ -99,7 +104,9 @@ public class Main {
             osszeg += rmi;
         }
 
-        if (osszeg > reszlegesMegoldas.length) return true;
-        else return false;
+        if (osszeg > reszlegesMegoldas.length)
+            return true;
+        else
+            return false;
     }
 }
