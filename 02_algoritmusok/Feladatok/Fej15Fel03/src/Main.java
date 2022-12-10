@@ -68,10 +68,13 @@ public class Main {
         if (osszeg > aktualisReszmegoldas.length)
             return true;
 
-        for (int i = 0; i < aktualisSzint; i++) {
-            if (aktualisReszmegoldas[i] > aktualisReszmegoldas[i + 1])
-                return true;
-        }
+//        for (int i = 0; i < aktualisSzint; i++) {
+//            if (aktualisReszmegoldas[i] > aktualisReszmegoldas[i + 1])
+//                return true;
+//        }
+        if (aktualisSzint > 0 &&
+                aktualisReszmegoldas[aktualisSzint - 1] > aktualisReszmegoldas[aktualisSzint])
+            return true;
 
         return false;
     }
