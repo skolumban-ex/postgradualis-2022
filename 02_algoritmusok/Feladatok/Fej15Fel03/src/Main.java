@@ -32,6 +32,7 @@ public class Main {
                     // szintlepes
                     ++aktualisSzint;
                     // reszmegoldas specifikalasa
+                    aktualisReszmegoldas[aktualisSzint] = aktualisReszmegoldas[aktualisSzint-1]-1;
                 }
             } else {
                 // backtrack
