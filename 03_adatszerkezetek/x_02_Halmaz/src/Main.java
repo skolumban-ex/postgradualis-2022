@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
         // 16/2. Implementálja a halmaz adattípust
@@ -82,15 +84,18 @@ class Halmaz {
         return true;
     }
 
-    public Halmaz Kivon(Halmaz halmaz) {
-        for (int i = 0; i < taroltErtekek.length; i++) {
-            for (int j = 0; j < halmaz.Szamossag(); j++) {
+    public Halmaz Kivon(Halmaz kivonando) {
+        // minden elemet beteszek az aktualis halmazbol
+        // majd kivesszuk a kivonando elemeit
 
-
-            }
-
+        Halmaz eredmeny = new Halmaz();
+        for (int i = 0; i < this.taroltErtekek.length; i++) {
+            eredmeny.HozzaAd(this.taroltErtekek[i]);
         }
-        return new Halmaz();
+        for (int i = 0; i < kivonando.taroltErtekek.length; i++) {
+            eredmeny.Kivesz(kivonando.taroltErtekek[i]);
+        }
+        return eredmeny;
     }
 
 
@@ -112,8 +117,16 @@ class Halmaz {
         return eredmeny;
     }
 
-    public Halmaz Metszet(Halmaz halmaz) {
-        return new Halmaz();
+    public Halmaz Metszet(Halmaz metszendo) {
+        // az eredmeny halmaz elemei a this es a metszendoben is benne kell legyenek
+        // az aktualis halmaz elemeit megnezzuk, hogy benne vannak-e
+        // a metszendoben
+        Halmaz metszet = new Halmaz();
+        for (int i = 0; i < this.taroltErtekek.length; i++) {
+            if (metszendo.BenneVan(this.taroltErtekek[i]))
+                metszet.HozzaAd(this.taroltErtekek[i]);
+        }
+        return metszet;
     }
 
     public void Urit() {
@@ -134,11 +147,11 @@ class Halmaz {
         return Szamossag() == 0;
     }
 
-    public String[] Ertekek(){
+    public String[] Ertekek() {
         String[] elemek = new String[this.taroltErtekek.length];
         for (int i = 0; i < this.taroltErtekek.length; i++) {
             elemek[i] = this.taroltErtekek[i];
         }
-        return  elemek;
+        return elemek;
     }
 }
