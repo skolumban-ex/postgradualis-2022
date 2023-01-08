@@ -6,7 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DinDoubleTomb dinTomb = new DinDoubleTomb();
+        DinDoubleTomb2 dinTomb = new DinDoubleTomb2();
+
+        dinTomb.PozicioraBeszur(0, 1);
+        dinTomb.PozicioraBeszur(0, 2);
+        dinTomb.PozicioraBeszur(0, 3);
+        dinTomb.PozicioraBeszur(0, 4);
+        dinTomb.PozicioraBeszur(0, 5);
 
 
         for (int m = 1000; m < 30000; m = m + 1000) {
@@ -24,17 +30,21 @@ public class Main {
 class DinDoubleTomb2 {
 
     // tagvaltozok
+
+    // a taroltErtekek tomb elso hasznosElemekSzama eleme lesz relevans, a tobbi nem
+    int hasznosElemekSzama;
     private double[] taroltErtekek;
 
     // konstruktor
     // O(1)
     public DinDoubleTomb2() {
-        taroltErtekek = new double[0];
+        hasznosElemekSzama = 0;
+        taroltErtekek = new double[1];
     }
 
     // O(1)
     public int Hossz() {
-        return taroltErtekek.length;
+        return hasznosElemekSzama;
     }
 
     // O(1)
@@ -49,29 +59,35 @@ class DinDoubleTomb2 {
 
     // O(n)
     public void PoziciorolTorol(int poz) {
-        double[] valtozottErtekek = new double[taroltErtekek.length - 1];
-        for (int i = 0; i < poz; i++) {
-            valtozottErtekek[i] = taroltErtekek[i];
+        for (int i = poz; i < hasznosElemekSzama - 1; i++) {
+            taroltErtekek[i] = taroltErtekek[i + 1];
         }
-        for (int i = poz + 1; i < taroltErtekek.length; i++) {
-            valtozottErtekek[i - 1] = taroltErtekek[i];
-        }
-        taroltErtekek = valtozottErtekek;
+        --hasznosElemekSzama;
     }
 
     // O(n)
     public void PozicioraBeszur(int poz, double adat) {
-        double[] valtozottErtekek = new double[taroltErtekek.length + 1];
-        for (int i = 0; i < poz; i++) {
-            valtozottErtekek[i] = taroltErtekek[i];
-        }
+        if (hasznosElemekSzama + 1 <= taroltErtekek.length) {
+            // van hely az uj elemnek
+            for (int i = hasznosElemekSzama; i > poz; --i) {
+                taroltErtekek[i] = taroltErtekek[i - 1];
+            }
+            taroltErtekek[poz] = adat;
+        } else {
+            // nincs hely az uj elemnek
+            double[] valtozottErtekek = new double[taroltErtekek.length * 2];
+            for (int i = 0; i < poz; i++) {
+                valtozottErtekek[i] = taroltErtekek[i];
+            }
 
-        valtozottErtekek[poz] = adat;
+            valtozottErtekek[poz] = adat;
 
-        for (int i = poz; i < taroltErtekek.length; i++) {
-            valtozottErtekek[i + 1] = taroltErtekek[i];
+            for (int i = poz; i < taroltErtekek.length; i++) {
+                valtozottErtekek[i + 1] = taroltErtekek[i];
+            }
+            taroltErtekek = valtozottErtekek;
         }
-        taroltErtekek = valtozottErtekek;
+        ++hasznosElemekSzama;
     }
 }
 
