@@ -133,6 +133,7 @@ class Halmaz {
     public boolean uresE() {
         return Szamossag() == 0;
     }
+
     public String[] Ertekek(){
         String[] elemek = new String[this.taroltErtekek.length];
         for (int i = 0; i < this.taroltErtekek.length; i++) {
