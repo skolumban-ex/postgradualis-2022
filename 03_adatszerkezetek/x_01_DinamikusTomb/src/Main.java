@@ -8,13 +8,6 @@ public class Main {
 
         DinDoubleTomb2 dinTomb = new DinDoubleTomb2();
 
-        dinTomb.PozicioraBeszur(0, 1);
-        dinTomb.PozicioraBeszur(0, 2);
-        dinTomb.PozicioraBeszur(0, 3);
-        dinTomb.PozicioraBeszur(0, 4);
-        dinTomb.PozicioraBeszur(0, 5);
-
-
         for (int m = 1000; m < 30000; m = m + 1000) {
             // O(m*m)
             long start = System.currentTimeMillis();
@@ -65,7 +58,7 @@ class DinDoubleTomb2 {
         --hasznosElemekSzama;
     }
 
-    // O(n)
+    // O(n) - amortizaltan O(1)
     public void PozicioraBeszur(int poz, double adat) {
         if (hasznosElemekSzama + 1 <= taroltErtekek.length) {
             // van hely az uj elemnek
