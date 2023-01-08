@@ -16,6 +16,22 @@ public class Main {
 
 class StringMultihalmaz {
 
+    // A otlet
+    // String[] ertekek
+    // int[] multiplicitasok
+
+    // A' otlet
+    // DinStringTomb ertekek
+    // DinIntTom multiplicitasok
+
+    // A'' otlet
+    // String[]
+    // {"alma|5", "alma|5|1"}
+
+    // B otlet
+    // String[]
+    // {a-3, b-1}
+    // {"a", "a", "b", "a"}
     public StringMultihalmaz() {
     }
 
