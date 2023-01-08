@@ -45,14 +45,14 @@ class Halmaz {
             return false;
 
         // O(1)
-        String[] ujTaroltElemek = new String[taroltErtekek.length + 1];
+        String[] taroltErtekek = new String[this.taroltErtekek.length + 1];
         // O(n)
-        for (int i = 0; i < taroltErtekek.length; i++) {
-            ujTaroltElemek[i] = taroltErtekek[i];
+        for (int i = 0; i < this.taroltErtekek.length; i++) {
+            taroltErtekek[i] = this.taroltErtekek[i];
         }
         // O(1)
-        ujTaroltElemek[ujTaroltElemek.length - 1] = elem;
-        taroltErtekek = ujTaroltElemek;
+        taroltErtekek[taroltErtekek.length - 1] = elem;
+        this.taroltErtekek = taroltErtekek;
         return true;
     }
 
@@ -93,6 +93,9 @@ class Halmaz {
     }
 
     public Halmaz Egyesit(Halmaz halmaz) {
+        // this
+        this.taroltErtekek[1] = "";
+        halmaz.taroltErtekek[8] = "";
 
 
         return new Halmaz();
