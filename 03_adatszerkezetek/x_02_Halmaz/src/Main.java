@@ -12,7 +12,7 @@ public class Main {
         halmaz1.HozzaAd("korte"); //{a,k}
         halmaz1.HozzaAd("banan"); //{a,k,b}
         halmaz1.HozzaAd("eper"); //{a,k,b,e}
-        halmaz1.Kivesz("korte"); //{a,k,e}
+        halmaz1.Kivesz("banan"); //{a,k,e}
 
         halmaz2.HozzaAd("2"); // {2}
         halmaz2.HozzaAd("3"); // {2,3}
@@ -69,12 +69,13 @@ class Halmaz {
         for (int i = 0; i < taroltErtekek.length; i++) {
             if (taroltErtekek[i].equals(elem)) {
                 atugrottukeMarAkivevendot = true;
-            } else {
-                if (!atugrottukeMarAkivevendot)
-                    ujTaroltElemek[i] = taroltErtekek[i];
-                else
-                    ujTaroltElemek[i - 1] = taroltErtekek[i];
+                continue;
             }
+
+            if (!atugrottukeMarAkivevendot)
+                ujTaroltElemek[i] = taroltErtekek[i];
+            else
+                ujTaroltElemek[i - 1] = taroltErtekek[i];
         }
         taroltErtekek = ujTaroltElemek;
         return true;
