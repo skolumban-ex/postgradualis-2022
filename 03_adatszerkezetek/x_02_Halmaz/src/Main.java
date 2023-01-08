@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 public class Main {
     public static void main(String[] args) {
         // 16/2. Implementálja a halmaz adattípust
@@ -7,8 +5,8 @@ public class Main {
         //• dinamikus tömbök használatával,
         //• dinamikus tömbök használatával, de hatékonyan (számokra).
 
-        Halmaz halmaz1 = new Halmaz();
-        Halmaz halmaz2 = new Halmaz();
+        StringHalmazStatikusTombbel halmaz1 = new StringHalmazStatikusTombbel();
+        StringHalmazStatikusTombbel halmaz2 = new StringHalmazStatikusTombbel();
 
         halmaz1.HozzaAd("alma"); //{a}
         halmaz1.HozzaAd("korte"); //{a,k}
@@ -25,8 +23,8 @@ public class Main {
         halmaz1.HozzaAd("d"); //{a,k,e,c,d}
         halmaz1.HozzaAd("2"); //{a,k,e,c,d, 2}
         halmaz1.Kivesz("eper"); // {a,k,c,d}
-        Halmaz halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e, c,d, 2,3}
-        Halmaz h1Minh2 = halmaz1.Kivon(halmaz2); // {k,e}
+        StringHalmazStatikusTombbel halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e, c,d, 2,3}
+        StringHalmazStatikusTombbel h1Minh2 = halmaz1.Kivon(halmaz2); // {k,e}
         halmaz3.Metszet(halmaz2);
         halmaz3.Urit();
         halmaz3.BenneVan("2");
@@ -34,10 +32,10 @@ public class Main {
     }
 }
 
-class Halmaz {
+class StringHalmazStatikusTombbel {
     private String[] taroltErtekek;
 
-    public Halmaz() {
+    public StringHalmazStatikusTombbel() {
         taroltErtekek = new String[0];
     }
 
@@ -84,23 +82,23 @@ class Halmaz {
         return true;
     }
 
-    public Halmaz Kivon(Halmaz kivonando) {
+    public StringHalmazStatikusTombbel Kivon(StringHalmazStatikusTombbel kivonando) {
         // minden elemet beteszek az aktualis halmazbol
         // majd kivesszuk a kivonando elemeit
 
-        Halmaz eredmeny = new Halmaz();
+        StringHalmazStatikusTombbel eredmeny = new StringHalmazStatikusTombbel();
         for (int i = 0; i < this.taroltErtekek.length; i++) {
             eredmeny.HozzaAd(this.taroltErtekek[i]);
         }
+
         for (int i = 0; i < kivonando.taroltErtekek.length; i++) {
             eredmeny.Kivesz(kivonando.taroltErtekek[i]);
         }
         return eredmeny;
     }
 
-
-    public Halmaz Egyesit(Halmaz halmaz) {
-        Halmaz eredmeny = new Halmaz();
+    public StringHalmazStatikusTombbel Egyesit(StringHalmazStatikusTombbel halmaz) {
+        StringHalmazStatikusTombbel eredmeny = new StringHalmazStatikusTombbel();
 
         // az összes elem megjelenik benne (csak egyszer)
         // ami legalabb az egyik halmazban benne van
@@ -117,11 +115,11 @@ class Halmaz {
         return eredmeny;
     }
 
-    public Halmaz Metszet(Halmaz metszendo) {
+    public StringHalmazStatikusTombbel Metszet(StringHalmazStatikusTombbel metszendo) {
         // az eredmeny halmaz elemei a this es a metszendoben is benne kell legyenek
         // az aktualis halmaz elemeit megnezzuk, hogy benne vannak-e
         // a metszendoben
-        Halmaz metszet = new Halmaz();
+        StringHalmazStatikusTombbel metszet = new StringHalmazStatikusTombbel();
         for (int i = 0; i < this.taroltErtekek.length; i++) {
             if (metszendo.BenneVan(this.taroltErtekek[i]))
                 metszet.HozzaAd(this.taroltErtekek[i]);
