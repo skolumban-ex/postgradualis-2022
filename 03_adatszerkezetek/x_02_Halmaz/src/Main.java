@@ -5,8 +5,8 @@ public class Main {
         //• dinamikus tömbök használatával,
         //• dinamikus tömbök használatával, de hatékonyan (számokra).
 
-        StringHalmazStatikusTombbel halmaz1 = new StringHalmazStatikusTombbel();
-        StringHalmazStatikusTombbel halmaz2 = new StringHalmazStatikusTombbel();
+        StringHalmazDinamikusTombbel halmaz1 = new StringHalmazDinamikusTombbel();
+        StringHalmazDinamikusTombbel halmaz2 = new StringHalmazDinamikusTombbel();
 
         halmaz1.HozzaAd("alma"); //{a}
         halmaz1.HozzaAd("korte"); //{a,k}
@@ -23,8 +23,8 @@ public class Main {
         halmaz1.HozzaAd("d"); //{a,k,e,c,d}
         halmaz1.HozzaAd("2"); //{a,k,e,c,d, 2}
         halmaz1.Kivesz("eper"); // {a,k,c,d}
-        StringHalmazStatikusTombbel halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e, c,d, 2,3}
-        StringHalmazStatikusTombbel h1Minh2 = halmaz1.Kivon(halmaz2); // {k,e}
+        StringHalmazDinamikusTombbel halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e, c,d, 2,3}
+        StringHalmazDinamikusTombbel h1Minh2 = halmaz1.Kivon(halmaz2); // {k,e}
         halmaz3.Metszet(halmaz2);
         halmaz3.Urit();
         halmaz3.BenneVan("2");
