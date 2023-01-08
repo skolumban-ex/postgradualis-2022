@@ -21,8 +21,9 @@ public class Main {
 
         halmaz1.HozzaAd("c"); //{a,k,e,c}
         halmaz1.HozzaAd("d"); //{a,k,e,c,d}
+        halmaz1.HozzaAd("2"); //{a,k,e,c,d, 2}
         halmaz1.Kivesz("eper"); // {a,k,c,d}
-        Halmaz halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e,2,3}
+        Halmaz halmaz3 = halmaz1.Egyesit(halmaz2); //{k,e, c,d, 2,3}
         Halmaz h1Minh2 = halmaz1.Kivon(halmaz2); // {k,e}
         halmaz3.Metszet(halmaz2);
         halmaz3.Urit();
@@ -45,14 +46,14 @@ class Halmaz {
             return false;
 
         // O(1)
-        String[] taroltErtekek = new String[this.taroltErtekek.length + 1];
+        String[] ujTaroltErtekek = new String[this.taroltErtekek.length + 1];
         // O(n)
         for (int i = 0; i < this.taroltErtekek.length; i++) {
-            taroltErtekek[i] = this.taroltErtekek[i];
+            ujTaroltErtekek[i] = this.taroltErtekek[i];
         }
         // O(1)
-        taroltErtekek[taroltErtekek.length - 1] = elem;
-        this.taroltErtekek = taroltErtekek;
+        ujTaroltErtekek[ujTaroltErtekek.length - 1] = elem;
+        this.taroltErtekek = ujTaroltErtekek;
         return true;
     }
 
@@ -92,13 +93,23 @@ class Halmaz {
         return new Halmaz();
     }
 
+
     public Halmaz Egyesit(Halmaz halmaz) {
-        // this
-        this.taroltErtekek[1] = "";
-        halmaz.taroltErtekek[8] = "";
+        Halmaz eredmeny = new Halmaz();
 
+        // az összes elem megjelenik benne (csak egyszer)
+        // ami legalabb az egyik halmazban benne van
+        // O(n1 negyzet)
+        for (int i = 0; i < this.taroltErtekek.length; i++) {
+            eredmeny.HozzaAd(this.taroltErtekek[i]);
+        }
 
-        return new Halmaz();
+        // O(n2 negyzet)
+        for (int i = 0; i < halmaz.taroltErtekek.length; i++) {
+            eredmeny.HozzaAd(halmaz.taroltErtekek[i]);
+        }
+
+        return eredmeny;
     }
 
     public Halmaz Metszet(Halmaz halmaz) {
