@@ -61,25 +61,23 @@ class Halmaz {
     }
 
     public boolean Kivesz(String elem) {
-        if (BenneVan(elem)) {
-            String[] halmaz = new String[taroltErtekek.length - 1];
-            boolean atugrottukeMarAkivevendot = false;
-            for (int i = 0; i < halmaz.length; i++) {
-                if (!taroltErtekek[i].equals(elem)) {
-                    if (!atugrottukeMarAkivevendot)
-                        halmaz[i] = taroltErtekek[i];
-                    else
-                        halmaz[i] = taroltErtekek[i + 1];
-                } else {
-                    atugrottukeMarAkivevendot = true;
-                    halmaz[i] = taroltErtekek[i + 1];
-                }
-            }
-            taroltErtekek = halmaz;
-            return true;
-        } else {
+        if (!BenneVan(elem))
             return false;
+
+        String[] ujTaroltElemek = new String[taroltErtekek.length - 1];
+        boolean atugrottukeMarAkivevendot = false;
+        for (int i = 0; i < taroltErtekek.length; i++) {
+            if (taroltErtekek[i].equals(elem)) {
+                atugrottukeMarAkivevendot = true;
+            } else {
+                if (!atugrottukeMarAkivevendot)
+                    ujTaroltElemek[i] = taroltErtekek[i];
+                else
+                    ujTaroltElemek[i - 1] = taroltErtekek[i];
+            }
         }
+        taroltErtekek = ujTaroltElemek;
+        return true;
     }
 
     public Halmaz Kivon(Halmaz halmaz) {
