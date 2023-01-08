@@ -155,10 +155,10 @@ class StringHalmazStatikusTombbel {
 }
 
 class StringHalmazDinamikusTombbel {
-    private String[] taroltErtekek;
+    private DinStringTomb taroltErtekek;
 
     public StringHalmazDinamikusTombbel() {
-        taroltErtekek = new String[0];
+        taroltErtekek = new DinStringTomb();
     }
 
     // nem bent levo elem eseten O(n) + O(n + 2)
@@ -167,41 +167,29 @@ class StringHalmazDinamikusTombbel {
         if (BenneVan(elem))
             return false;
 
-        // O(1)
-        String[] ujTaroltErtekek = new String[this.taroltErtekek.length + 1];
-        // O(n)
-        for (int i = 0; i < this.taroltErtekek.length; i++) {
-            ujTaroltErtekek[i] = this.taroltErtekek[i];
-        }
-        // O(1)
-        ujTaroltErtekek[ujTaroltErtekek.length - 1] = elem;
-        this.taroltErtekek = ujTaroltErtekek;
+        taroltErtekek.PozicioraBeszur(taroltErtekek.Hossz(), elem);
         return true;
     }
 
     public int Szamossag() {
-        return taroltErtekek.length;
+        return taroltErtekek.Hossz();
     }
 
     public boolean Kivesz(String elem) {
         if (!BenneVan(elem))
             return false;
 
-        String[] ujTaroltElemek = new String[taroltErtekek.length - 1];
-        boolean atugrottukeMarAkivevendot = false;
-        for (int i = 0; i < taroltErtekek.length; i++) {
-            if (taroltErtekek[i].equals(elem)) {
-                atugrottukeMarAkivevendot = true;
-                continue;
+        int torlendoPozicio = -1;
+        for (int i = 0; i < taroltErtekek.Hossz(); i++) {
+            if (taroltErtekek.AdottPozicioLekerdezese(i).equals(elem)){
+                torlendoPozicio=i;
+                break;
             }
-
-            if (!atugrottukeMarAkivevendot)
-                ujTaroltElemek[i] = taroltErtekek[i];
-            else
-                ujTaroltElemek[i - 1] = taroltErtekek[i];
         }
-        taroltErtekek = ujTaroltElemek;
+
+        taroltErtekek.PoziciorolTorol(torlendoPozicio);
         return true;
+
     }
 
     public StringHalmazDinamikusTombbel Kivon(StringHalmazDinamikusTombbel kivonando) {
@@ -209,12 +197,12 @@ class StringHalmazDinamikusTombbel {
         // majd kivesszuk a kivonando elemeit
 
         StringHalmazDinamikusTombbel eredmeny = new StringHalmazDinamikusTombbel();
-        for (int i = 0; i < this.taroltErtekek.length; i++) {
-            eredmeny.HozzaAd(this.taroltErtekek[i]);
+        for (int i = 0; i < this.taroltErtekek.Hossz(); i++) {
+            eredmeny.HozzaAd(this.taroltErtekek.AdottPozicioLekerdezese(i));
         }
 
-        for (int i = 0; i < kivonando.taroltErtekek.length; i++) {
-            eredmeny.Kivesz(kivonando.taroltErtekek[i]);
+        for (int i = 0; i < kivonando.taroltErtekek.Hossz(); i++) {
+            eredmeny.Kivesz(kivonando.taroltErtekek.AdottPozicioLekerdezese(i));
         }
         return eredmeny;
     }
@@ -225,13 +213,13 @@ class StringHalmazDinamikusTombbel {
         // az összes elem megjelenik benne (csak egyszer)
         // ami legalabb az egyik halmazban benne van
         // O(n1 negyzet)
-        for (int i = 0; i < this.taroltErtekek.length; i++) {
-            eredmeny.HozzaAd(this.taroltErtekek[i]);
+        for (int i = 0; i < this.taroltErtekek.Hossz(); i++) {
+            eredmeny.HozzaAd(this.taroltErtekek.AdottPozicioLekerdezese(i));
         }
 
         // O(n2 negyzet)
-        for (int i = 0; i < halmaz.taroltErtekek.length; i++) {
-            eredmeny.HozzaAd(halmaz.taroltErtekek[i]);
+        for (int i = 0; i < halmaz.taroltErtekek.Hossz(); i++) {
+            eredmeny.HozzaAd(halmaz.taroltErtekek.AdottPozicioLekerdezese(i));
         }
 
         return eredmeny;
@@ -242,9 +230,9 @@ class StringHalmazDinamikusTombbel {
         // az aktualis halmaz elemeit megnezzuk, hogy benne vannak-e
         // a metszendoben
         StringHalmazDinamikusTombbel metszet = new StringHalmazDinamikusTombbel();
-        for (int i = 0; i < this.taroltErtekek.length; i++) {
-            if (metszendo.BenneVan(this.taroltErtekek[i]))
-                metszet.HozzaAd(this.taroltErtekek[i]);
+        for (int i = 0; i < this.taroltErtekek.Hossz(); i++) {
+            if (metszendo.BenneVan(this.taroltErtekek.AdottPozicioLekerdezese(i)))
+                metszet.HozzaAd(this.taroltErtekek.AdottPozicioLekerdezese(i));
         }
         return metszet;
     }
@@ -255,8 +243,8 @@ class StringHalmazDinamikusTombbel {
 
     // O(n)
     public boolean BenneVan(String elem) {
-        for (int i = 0; i < taroltErtekek.length; i++) {
-            if (taroltErtekek[i].equals(elem)) {
+        for (int i = 0; i < taroltErtekek.Hossz(); i++) {
+            if (taroltErtekek.AdottPozicioLekerdezese(i).equals(elem)) {
                 return true;
             }
         }
@@ -268,9 +256,9 @@ class StringHalmazDinamikusTombbel {
     }
 
     public String[] Ertekek() {
-        String[] elemek = new String[this.taroltErtekek.length];
-        for (int i = 0; i < this.taroltErtekek.length; i++) {
-            elemek[i] = this.taroltErtekek[i];
+        String[] elemek = new String[this.taroltErtekek.Hossz()];
+        for (int i = 0; i < this.taroltErtekek.Hossz(); i++) {
+            elemek[i] = this.taroltErtekek.AdottPozicioLekerdezese(i);
         }
         return elemek;
     }
