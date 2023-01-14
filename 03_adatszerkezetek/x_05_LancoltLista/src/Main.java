@@ -46,7 +46,13 @@ class LancoltLista {
     }
 
     public int Hossz() {
-        return 0;
+        Lancszem aktualisLancszem = this.elso;
+        int elemszam = 0;
+        while (aktualisLancszem != null) {
+            ++elemszam;
+            aktualisLancszem = aktualisLancszem.GetKovetkezo();
+        }
+        return elemszam;
     }
 
     public void AdottPozicionErtekadas(int poz, int adat) {
@@ -57,16 +63,29 @@ class LancoltLista {
         adottPozicionLevoSzem.SetAdat(adat);
     }
 
-    public double AdottPozicioLekerdezese(int poz) {
-        return 0;
+    public int AdottPozicioLekerdezese(int poz) {
+        Lancszem adottPozicionLevoSzem = this.elso;
+        for (int i = 0; i < poz; i++) {
+            adottPozicionLevoSzem = adottPozicionLevoSzem.GetKovetkezo();
+        }
+        return adottPozicionLevoSzem.GetAdat();
     }
 
     public void ElejerolTorol() {
-
+        this.elso = this.elso.GetKovetkezo();
     }
 
     public void PoziciorolTorol(int poz) {
+        if(poz == 0){
+            ElejerolTorol();
+            return;
+        }
 
+        Lancszem adottPozicioElottiSzem = this.elso;
+        for (int i = 0; i < poz - 1; i++) {
+            adottPozicioElottiSzem = adottPozicioElottiSzem.GetKovetkezo();
+        }
+        adottPozicioElottiSzem.SetKovetkezo(adottPozicioElottiSzem.GetKovetkezo().GetKovetkezo());
     }
 
     public void ElejereBeszur(int adat) {
