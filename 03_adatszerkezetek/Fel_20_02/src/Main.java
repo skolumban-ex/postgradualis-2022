@@ -40,6 +40,7 @@ class StringMultihalmaz {
     }
 
     public boolean Kivesz(String elem) {
+        // 3
         return false;
     }
 
@@ -56,9 +57,11 @@ class StringMultihalmaz {
     }
 
     public void Urit() {
+        // 2
     }
 
     public boolean BenneVan(String elem) {
+        // 1
         return false;
     }
 
