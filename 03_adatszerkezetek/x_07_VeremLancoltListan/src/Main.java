@@ -1,0 +1,140 @@
+public class Main {
+    public static void main(String[] args) {
+        IntVerem verem = new IntVerem();
+        verem.Betesz(3);
+        verem.Betesz(2);
+        verem.Betesz(5);
+        System.out.println("Kijon: " + verem.Kivesz());
+        System.out.println("Kijon: " + verem.Kivesz());
+        verem.Betesz(9);
+        System.out.println("Kijon: " + verem.Kivesz());
+        System.out.println("Kukucska: " + verem.Kukucska());
+        System.out.println("Kijon: " + verem.Kivesz());
+        System.out.println("Ures: " + verem.Ures());
+    }
+}
+
+class IntVerem {
+
+    LancoltLista adatokAVeremben;
+
+    public IntVerem() {
+        adatokAVeremben = new LancoltLista();
+    }
+
+    public void Betesz(int adat) {
+        adatokAVeremben.ElejereBeszur(adat);
+    }
+
+    public int Kivesz() {
+        int elsoErtek = adatokAVeremben.AdottPozicioLekerdezese(0);
+        adatokAVeremben.ElejerolTorol();
+        return  elsoErtek;
+    }
+
+    public boolean Ures() {
+        return adatokAVeremben.Hossz() == 0;
+    }
+
+    public int Kukucska() {
+        return adatokAVeremben.AdottPozicioLekerdezese(0);
+    }
+}
+
+class Lancszem {
+    private Lancszem kovetkezo;
+    private int adat;
+
+    public void SetKovetkezo(Lancszem kovetkezo) {
+        this.kovetkezo = kovetkezo;
+    }
+
+    public Lancszem GetKovetkezo() {
+        return this.kovetkezo;
+    }
+
+    public void SetAdat(int adat) {
+        this.adat = adat;
+    }
+
+    public int GetAdat() {
+        return adat;
+    }
+}
+
+class LancoltLista {
+    private Lancszem elso;
+
+    public LancoltLista() {
+        this.elso = null;
+    }
+
+    public int Hossz() {
+        Lancszem aktualisLancszem = this.elso;
+        int elemszam = 0;
+        while (aktualisLancszem != null) {
+            ++elemszam;
+            aktualisLancszem = aktualisLancszem.GetKovetkezo();
+        }
+        return elemszam;
+    }
+
+    public void AdottPozicionErtekadas(int poz, int adat) {
+        Lancszem adottPozicionLevoSzem = this.elso;
+        for (int i = 0; i < poz; i++) {
+            adottPozicionLevoSzem = adottPozicionLevoSzem.GetKovetkezo();
+        }
+        adottPozicionLevoSzem.SetAdat(adat);
+    }
+
+    public int AdottPozicioLekerdezese(int poz) {
+        Lancszem adottPozicionLevoSzem = this.elso;
+        for (int i = 0; i < poz; i++) {
+            adottPozicionLevoSzem = adottPozicionLevoSzem.GetKovetkezo();
+        }
+        return adottPozicionLevoSzem.GetAdat();
+    }
+
+    public void ElejerolTorol() {
+        this.elso = this.elso.GetKovetkezo();
+    }
+
+    public void PoziciorolTorol(int poz) {
+        if (poz == 0) {
+            ElejerolTorol();
+            return;
+        }
+
+        Lancszem adottPozicioElottiSzem = this.elso;
+        for (int i = 0; i < poz - 1; i++) {
+            adottPozicioElottiSzem = adottPozicioElottiSzem.GetKovetkezo();
+        }
+        adottPozicioElottiSzem.SetKovetkezo(adottPozicioElottiSzem.GetKovetkezo().GetKovetkezo());
+    }
+
+    public void ElejereBeszur(int adat) {
+        Lancszem ujElem = new Lancszem();
+        ujElem.SetAdat(adat);
+
+        ujElem.SetKovetkezo(this.elso);
+        this.elso = ujElem;
+    }
+
+    public void PozicioraBeszur(int poz, int adat) {
+        if (poz == 0) {
+            ElejereBeszur(adat);
+        } else {
+            Lancszem ujElem = new Lancszem();
+            ujElem.SetAdat(adat);
+
+            // utolso elem a pozicio elott
+            Lancszem beszurandoElotti = this.elso;
+            for (int i = 1; i < poz; i++) {
+                beszurandoElotti = beszurandoElotti.GetKovetkezo();
+            }
+
+            ujElem.SetKovetkezo(beszurandoElotti.GetKovetkezo());
+            beszurandoElotti.SetKovetkezo(ujElem);
+        }
+    }
+}
