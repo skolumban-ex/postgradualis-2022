@@ -73,7 +73,7 @@ class StringMultihalmaz {
     public int ElemMultiplicitasa(String elem) {
         if (!adatok.containsKey(elem))
             return 0;
-        
+
         return adatok.get(elem);
     }
 }
