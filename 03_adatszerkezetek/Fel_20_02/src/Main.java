@@ -6,7 +6,7 @@ public class Main {
         StringMultihalmaz smh = new StringMultihalmaz();
         smh.HozzaAd("a");
         smh.HozzaAd("a");
-        if (smh.ElemMultiplicitasa("b") == 2) {
+        if (smh.ElemMultiplicitasa("a") == 2) {
             System.out.println("Lehet, hogy jól működik az adatszerkezet");
         } else {
             System.out.println("Tuti rossz az adatszerkezet.");
