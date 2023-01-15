@@ -18,6 +18,8 @@ class StringMultihalmaz {
 
     // egy stringhez asszocialjuk a halmazbeli multiplicitasat
     // 1 vagy nagyobb szamok vannak csak
+    // kulcs - halmazban tarolt ertek
+    // eret - a kulcs multiplicitasa
     private HashMap<String, Integer> adatok;
 
     public StringMultihalmaz() {
@@ -58,11 +60,13 @@ class StringMultihalmaz {
 
     public void Urit() {
         // 2
+        adatok.clear();
+        //adatok = new HashMap<>();
     }
 
     public boolean BenneVan(String elem) {
         // 1
-        return false;
+        return adatok.containsKey(elem);
     }
 
     public boolean uresE() {
