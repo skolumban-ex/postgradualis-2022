@@ -1,9 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        int[] v1 = {1, 5, 2, 3, -100, 7};
+        int[] v1 = {4, 1, 8, 11, 43, 12, 19};
         int[] v2 = {1, 2, 3, 4, 5};
 
-        InsertionSort(v1);
         BubbleSort(v1);
 
     }
@@ -61,7 +60,7 @@ public class Main {
         int utolsoNemRendezettPozicio = v.length - 1;
         do {
             voltVegrehajtottCsereAzUtolsoBubiCiklusban = false;
-            for (int i = 0; i < utolsoNemRendezettPozicio - 1; i++) {
+            for (int i = 0; i < utolsoNemRendezettPozicio; i++) {
                 if (v[i] > v[i + 1]) {
                     voltVegrehajtottCsereAzUtolsoBubiCiklusban = true;
                     int tmp = v[i];
